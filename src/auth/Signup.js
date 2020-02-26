@@ -45,7 +45,7 @@ const Signup = ({ history }) => {
             .catch(error => {
                 console.log('SIGNUP ERROR', error && error.response ? error.response.data : error);
                 setValues({ ...values, buttonText: 'Submit' });
-                toast.error(error.response.data.error);
+                if (error && error.response) toast.error(error.response.data.error);
             });
     };
 
