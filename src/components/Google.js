@@ -4,12 +4,18 @@ import GoogleLogin from 'react-google-login';
 
 const Google = observer(({ text, informParent = f => f, userStore: { googleAuth } }) => {
   const responseGoogle = async response => {
-    try {
-      const user = await googleAuth(response);
-      informParent(user);
-    } catch(e) {
-      console.error('GOOGLE SIGNIN ERROR');
+    if (response && response.tokenId) {
+      try {
+        const user = await googleAuth(response);
+        informParent(user);
+      } catch(e) {
+        console.error('GOOGLE SIGNIN ERROR');
+      }
+    } else {
+      console.error('GOOGLE SIGNIN ERROR, no google token id');
+      console.error(response);
     }
+
   };
   
   return (

@@ -99,8 +99,6 @@ class UserStore {
   }
 
   async googleAuth(googleResponse) {
-    console.log('googleAuth')
-    console.log(googleResponse)
     try {
       const resp = await request({
         method: 'POST',
